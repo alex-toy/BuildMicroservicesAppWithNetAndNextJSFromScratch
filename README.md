@@ -17,7 +17,7 @@ This project aims to see how to build a microservices based app using .Net for t
 
 
 ## General architecture
-<img src="/pictures/architecture.pdf" title="architecture"  width="800">
+<img src="/pictures/architecture.png" title="architecture"  width="800">
 
 
 ## Identity Context
