@@ -14,3 +14,42 @@ This project aims to see how to build a microservices based app using .Net for t
 - Unit and integration testing
 - Publishing locally to Kubernetes
 - Publishing the app to a Kubernetes cluster on the internet
+
+
+## General architecture
+<img src="/pictures/architecture.pdf" title="architecture"  width="800">
+
+
+## Identity Context
+
+### Add Packages
+```
+Microsoft.EntityFrameworkCore
+Microsoft.EntityFrameworkCore.Design
+Microsoft.EntityFrameworkCore.SqlServer
+Microsoft.AspNetCore.Identity
+Microsoft.AspNetCore.Identity.EntityFrameworkCore
+Microsoft.EntityFrameworkCore.Tools
+
+Microsoft.AspNetCore.Authentication.JwtBearer
+```
+
+### Add Migrations
+```
+Add-Migration InitialCreate
+Update-Database
+```
+
+
+## Register
+
+- wrong password :
+
+<img src="/pictures/register.png" title="register"  width="800">
+
+- good password :
+
+<img src="/pictures/register2.png" title="register"  width="800">
+<img src="/pictures/register3.png" title="register"  width="800">
+
+
