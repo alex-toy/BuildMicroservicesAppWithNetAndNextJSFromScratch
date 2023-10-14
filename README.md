@@ -20,18 +20,15 @@ This project aims to see how to build a microservices based app using .Net for t
 <img src="/pictures/architecture.png" title="architecture"  width="800">
 
 
-## Identity Context
+## AuctionService
 
-### Add Packages
+### Nuget Packages
 ```
-Microsoft.EntityFrameworkCore
-Microsoft.EntityFrameworkCore.Design
-Microsoft.EntityFrameworkCore.SqlServer
-Microsoft.AspNetCore.Identity
-Microsoft.AspNetCore.Identity.EntityFrameworkCore
-Microsoft.EntityFrameworkCore.Tools
-
+Automapper.Extensions.Microsoft.DependencyInjection
 Microsoft.AspNetCore.Authentication.JwtBearer
+Microsoft.EntityFrameworkCore.Design
+Npgsql.EntityFrameworkCore.PostGreSQL
+MassTransit.RabbitMQ
 ```
 
 ### Add Migrations
