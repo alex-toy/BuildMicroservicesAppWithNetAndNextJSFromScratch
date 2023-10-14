@@ -17,7 +17,7 @@ This project aims to see how to build a microservices based app using .Net for t
 
 
 ## General architecture
-<img src="/pictures/architecture.png" title="architecture"  width="800">
+<img src="/pictures/architecture.png" title="architecture"  width="900">
 
 
 ## AuctionService
@@ -31,22 +31,23 @@ Npgsql.EntityFrameworkCore.PostGreSQL
 MassTransit.RabbitMQ
 ```
 
-### Add Migrations
+### PostgreSQL
+
+- run
 ```
 Add-Migration InitialCreate
+```
+
+- Add PostgreSQL container
+```
+docker compose up -d
+```
+<img src="/pictures/postgres.png" title="postgres"  width="900">
+
+- run
+```
 Update-Database
 ```
 
-
-## Register
-
-- wrong password :
-
-<img src="/pictures/register.png" title="register"  width="800">
-
-- good password :
-
-<img src="/pictures/register2.png" title="register"  width="800">
-<img src="/pictures/register3.png" title="register"  width="800">
-
-
+- connect to the postgres database
+<img src="/pictures/postgres2.png" title="postgres"  width="900">
