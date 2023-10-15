@@ -49,5 +49,8 @@ docker compose up -d
 Update-Database
 ```
 
-- connect to the postgres database
+- connect to the postgres database. It is empty by now.
 <img src="/pictures/postgres2.png" title="postgres"  width="900">
+
+- seed the database
+<img src="/pictures/postgres3.png" title="postgres"  width="900">

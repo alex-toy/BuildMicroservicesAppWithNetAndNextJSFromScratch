@@ -11,6 +11,23 @@ namespace AuctionService
             builder.Services.AddDbContext<AuctionDbContext>(opt => opt.UseNpgsql(connectionString));
         }
 
+        public static void ConfigureAutoMapper(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+        }
+
+        //public static void ConfigureAuthentication(this WebApplicationBuilder builder)
+        //{
+        //    builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        //        .AddJwtBearer(options =>
+        //        {
+        //            options.Authority = builder.Configuration["IdentityServiceUrl"];
+        //            options.RequireHttpsMetadata = false;
+        //            options.TokenValidationParameters.ValidateAudience = false;
+        //            options.TokenValidationParameters.NameClaimType = "username";
+        //        });
+        //}
+
         //public static void ConfigureMassTransit(this WebApplicationBuilder builder)
         //{
         //    builder.Services.AddMassTransit(x =>

@@ -10,16 +10,12 @@
     <Compile Remove="Consumers\AuctionCreatedFaultConsumer.cs" />
     <Compile Remove="Consumers\AuctionFinishedConsumer.cs" />
     <Compile Remove="Consumers\BidPlacedConsumer.cs" />
-    <Compile Remove="Controllers\AuctionsController.cs" />
-    <Compile Remove="RequestHelpers\MappingProfiles.cs" />
     <Compile Remove="Services\GrpcAuctionService.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Consumers\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Entities\" />
-    <Folder Include="RequestHelpers\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

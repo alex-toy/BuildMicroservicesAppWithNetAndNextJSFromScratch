@@ -7,9 +7,16 @@ public class DbInitializer
 {
     public static void InitDb(WebApplication app)
     {
-        using var scope = app.Services.CreateScope();
+        try
+        {
+            using var scope = app.Services.CreateScope();
 
-        SeedData(scope.ServiceProvider.GetService<AuctionDbContext>());
+            SeedData(scope.ServiceProvider.GetService<AuctionDbContext>());
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
     }
 
     private static void SeedData(AuctionDbContext context)
@@ -22,6 +29,15 @@ public class DbInitializer
             return;
         }
 
+        List<Auction> auctions = GetAuctions();
+
+        context.AddRange(auctions);
+
+        context.SaveChanges();
+    }
+
+    private static List<Auction> GetAuctions()
+    {
         var auctions = new List<Auction>()
         {
             // 1 Ford GT
@@ -203,9 +219,6 @@ public class DbInitializer
                 }
             }
         };
-
-        context.AddRange(auctions);
-
-        context.SaveChanges();
+        return auctions;
     }
 }

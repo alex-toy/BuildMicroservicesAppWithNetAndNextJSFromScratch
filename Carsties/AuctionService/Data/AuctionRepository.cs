@@ -1,11 +1,12 @@
-﻿using AuctionService.Data;
-using AuctionService.DTOs;
+﻿using AuctionService.DTOs;
 using AuctionService.Entities;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Linq.Expressions;
 
-namespace AuctionService;
+namespace AuctionService.Data;
 
 public class AuctionRepository : IAuctionRepository
 {
@@ -39,11 +40,12 @@ public class AuctionRepository : IAuctionRepository
 
     public async Task<List<AuctionDto>> GetAuctionsAsync(string date)
     {
-        var query = _context.Auctions.OrderBy(x => x.Item.Make).AsQueryable();
+        IQueryable<Auction> query = _context.Auctions.OrderBy(x => x.Item.Make).AsQueryable();
 
         if (!string.IsNullOrEmpty(date))
         {
-            query = query.Where(x => x.UpdatedAt.CompareTo(DateTime.Parse(date).ToUniversalTime()) > 0);
+            Predicate<Auction> isUpdated = x => x.UpdatedAt.CompareTo(DateTime.Parse(date).ToUniversalTime()) > 0;
+            query = query.Where(x => isUpdated(x));
         }
 
         return await query.ProjectTo<AuctionDto>(_mapper.ConfigurationProvider).ToListAsync();
