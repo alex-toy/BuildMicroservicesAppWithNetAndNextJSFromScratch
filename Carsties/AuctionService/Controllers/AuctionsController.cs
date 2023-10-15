@@ -59,48 +59,45 @@ public class AuctionsController : ControllerBase
     }
 
     //[Authorize]
-    //[HttpPut("{id}")]
-    //public async Task<ActionResult> UpdateAuction(Guid id, UpdateAuctionDto updateAuctionDto)
-    //{
-    //    var auction = await _repo.GetAuctionEntityById(id);
+    [HttpPut("{id}")]
+    public async Task<ActionResult> UpdateAuction(Guid id, UpdateAuctionDto updateAuctionDto)
+    {
+        var auction = await _repo.GetAuctionEntityById(id);
 
-    //    if (auction == null) return NotFound();
+        if (auction == null) return NotFound();
 
-    //    if (auction.Seller != User.Identity.Name) return Forbid();
+        if (auction.Seller != User.Identity.Name) return Forbid();
 
-    //    auction.Item.Make = updateAuctionDto.Make ?? auction.Item.Make;
-    //    auction.Item.Model = updateAuctionDto.Model ?? auction.Item.Model;
-    //    auction.Item.Color = updateAuctionDto.Color ?? auction.Item.Color;
-    //    auction.Item.Mileage = updateAuctionDto.Mileage ?? auction.Item.Mileage;
-    //    auction.Item.Year = updateAuctionDto.Year ?? auction.Item.Year;
+        auction.UpdateBasedOn(updateAuctionDto);
 
-    //    await _publishEndpoint.Publish(_mapper.Map<AuctionUpdated>(auction));
+        //await _publishEndpoint.Publish(_mapper.Map<AuctionUpdated>(auction));
 
-    //    var result = await _repo.SaveChangesAsync();
+        var result = await _repo.SaveChangesAsync();
 
-    //    if (result) return Ok();
+        if (!result) return BadRequest("Problem saving changes");
 
-    //    return BadRequest("Problem saving changes");
-    //}
+        return Ok();
+
+    }
 
     //[Authorize]
-    //[HttpDelete("{id}")]
-    //public async Task<ActionResult> DeleteAuction(Guid id)
-    //{
-    //    var auction = await _repo.GetAuctionEntityById(id);
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> DeleteAuction(Guid id)
+    {
+        var auction = await _repo.GetAuctionEntityById(id);
 
-    //    if (auction == null) return NotFound();
+        if (auction == null) return NotFound();
 
-    //    if (auction.Seller != User.Identity.Name) return Forbid();
+        if (auction.Seller != User.Identity.Name) return Forbid();
 
-    //    _repo.RemoveAuction(auction);
+        _repo.RemoveAuction(auction);
 
-    //    await _publishEndpoint.Publish<AuctionDeleted>(new { Id = auction.Id.ToString() });
+        //await _publishEndpoint.Publish<AuctionDeleted>(new { Id = auction.Id.ToString() });
 
-    //    var result = await _repo.SaveChangesAsync();
+        var result = await _repo.SaveChangesAsync();
 
-    //    if (!result) return BadRequest("Could not update DB");
+        if (!result) return BadRequest("Could not update DB");
 
-    //    return Ok();
-    //}
+        return Ok();
+    }
 }

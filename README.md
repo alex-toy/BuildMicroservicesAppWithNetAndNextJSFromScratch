@@ -68,3 +68,6 @@ Update-Database
 
 - CreateAuction with error
 <img src="/pictures/auction_api4.png" title="auction api"  width="900">
+
+- UpdateAuction
+<img src="/pictures/auction_api5.png" title="auction api"  width="900">
