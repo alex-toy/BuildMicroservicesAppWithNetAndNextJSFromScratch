@@ -1,5 +1,6 @@
 ﻿using AuctionService.Data;
 using AuctionService.DTOs;
+using AuctionService.Entities;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,26 +38,25 @@ public class AuctionsController : ControllerBase
     }
 
     //[Authorize]
-    //[HttpPost]
-    //public async Task<ActionResult<AuctionDto>> CreateAuction(CreateAuctionDto auctionDto)
-    //{
-    //    var auction = _mapper.Map<Auction>(auctionDto);
+    [HttpPost]
+    public async Task<ActionResult<AuctionDto>> CreateAuction(CreateAuctionDto auctionDto)
+    {
+        var auction = _mapper.Map<Auction>(auctionDto);
 
-    //    auction.Seller = User.Identity.Name;
+        auction.Seller = User.Identity.Name;
 
-    //    _repo.AddAuction(auction);
+        _repo.AddAuction(auction);
 
-    //    var newAuction = _mapper.Map<AuctionDto>(auction);
+        AuctionDto newAuction = _mapper.Map<AuctionDto>(auction);
 
-    //    await _publishEndpoint.Publish(_mapper.Map<AuctionCreated>(newAuction));
+        //await _publishEndpoint.Publish(_mapper.Map<AuctionCreated>(newAuction));
 
-    //    var result = await _repo.SaveChangesAsync();
+        bool result = await _repo.SaveChangesAsync();
 
-    //    if (!result) return BadRequest("Could not save changes to the DB");
+        if (!result) return BadRequest("Could not save changes to the DB");
 
-    //    return CreatedAtAction(nameof(GetAuctionById),
-    //        new { auction.Id }, newAuction);
-    //}
+        return CreatedAtAction(nameof(GetAuctionById), new { auction.Id }, newAuction);
+    }
 
     //[Authorize]
     //[HttpPut("{id}")]

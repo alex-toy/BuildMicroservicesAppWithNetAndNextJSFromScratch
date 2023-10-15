@@ -16,6 +16,11 @@ namespace AuctionService
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
+        public static void ConfigureInterfaces(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddScoped<IAuctionRepository, AuctionRepository>();
+        }
+
         //public static void ConfigureAuthentication(this WebApplicationBuilder builder)
         //{
         //    builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

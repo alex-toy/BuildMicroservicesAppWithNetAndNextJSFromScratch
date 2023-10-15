@@ -54,3 +54,17 @@ Update-Database
 
 - seed the database
 <img src="/pictures/postgres3.png" title="postgres"  width="900">
+
+### Test the API
+
+- GetAllAuctions
+<img src="/pictures/auction_api.png" title="auction api"  width="900">
+
+- GetAuctionById
+<img src="/pictures/auction_api2.png" title="auction api"  width="900">
+
+- CreateAuction
+<img src="/pictures/auction_api3.png" title="auction api"  width="900">
+
+- CreateAuction with error
+<img src="/pictures/auction_api4.png" title="auction api"  width="900">

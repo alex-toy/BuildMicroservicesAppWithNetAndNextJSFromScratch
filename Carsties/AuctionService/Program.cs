@@ -9,6 +9,8 @@ builder.ConfigureDatabase();
 
 builder.ConfigureAutoMapper();
 
+builder.ConfigureInterfaces();
+
 
 
 
