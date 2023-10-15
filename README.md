@@ -20,7 +20,7 @@ This project aims to see how to build a microservices based app using .Net for t
 <img src="/pictures/architecture.png" title="architecture"  width="900">
 
 
-## AuctionService
+## Auction MicroService
 
 ### Nuget Packages
 ```
@@ -71,3 +71,15 @@ Update-Database
 
 - UpdateAuction
 <img src="/pictures/auction_api5.png" title="auction api"  width="900">
+
+
+## Search MicroService
+
+### Nuget Packages
+```
+Automapper.Extensions.Microsoft.DependencyInjection
+Microsoft.AspNetCore.Authentication.JwtBearer
+Microsoft.EntityFrameworkCore.Design
+Npgsql.EntityFrameworkCore.PostGreSQL
+MassTransit.RabbitMQ
+```
