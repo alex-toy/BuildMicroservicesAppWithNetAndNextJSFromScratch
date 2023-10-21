@@ -7,7 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Consumers\AuctionCreatedConsumer.cs" />
+    <Compile Remove="Consumers\AuctionDeletedConsumer.cs" />
+    <Compile Remove="Consumers\AuctionFinishedConsumer.cs" />
+    <Compile Remove="Consumers\AuctionUpdatedConsumer.cs" />
+    <Compile Remove="Consumers\BidPlacedConsumer.cs" />
+    <Compile Remove="RequestHelpers\MappingProfiles.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Consumers\" />
     <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="MongoDB.Entities" Version="22.1.0" />
   </ItemGroup>
 
 </Project>

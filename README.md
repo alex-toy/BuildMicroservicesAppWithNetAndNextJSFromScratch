@@ -77,9 +77,20 @@ Update-Database
 
 ### Nuget Packages
 ```
+MongoDB.Entities
 Automapper.Extensions.Microsoft.DependencyInjection
+
 Microsoft.AspNetCore.Authentication.JwtBearer
 Microsoft.EntityFrameworkCore.Design
 Npgsql.EntityFrameworkCore.PostGreSQL
 MassTransit.RabbitMQ
 ```
+
+- Add MongoDB container
+```
+docker compose up -d
+```
+<img src="/pictures/mongodb.png" title="mongodb"  width="900">
+
+
+mongodb://localhost:27017/?readPreference=primary&ssl=false&directConnection=true
