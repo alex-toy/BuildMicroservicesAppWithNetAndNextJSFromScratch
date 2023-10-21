@@ -79,11 +79,7 @@ Update-Database
 ```
 MongoDB.Entities
 Automapper.Extensions.Microsoft.DependencyInjection
-
-Microsoft.AspNetCore.Authentication.JwtBearer
-Microsoft.EntityFrameworkCore.Design
-Npgsql.EntityFrameworkCore.PostGreSQL
-MassTransit.RabbitMQ
+Microsoft.Extensions.Http.Polly
 ```
 
 - Add MongoDB container
@@ -102,3 +98,6 @@ docker compose up -d
 
 - Get all items With PageSize and PageNumber
 <img src="/pictures/search2.png" title="search"  width="900">
+
+
+## RabbitMQ
