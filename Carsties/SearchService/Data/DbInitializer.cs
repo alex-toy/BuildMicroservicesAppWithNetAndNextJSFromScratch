@@ -22,16 +22,17 @@ public static class DbInitializer
 
         await SeedMongoDbFromJsonFile();
 
-        //await NewMethod(app);
+        await app.GetItems();
+
     }
 
-    private static async Task NewMethod(this WebApplication app)
+    private static async Task GetItems(this WebApplication app)
     {
-        var scope = app.Services.CreateScope();
+        using IServiceScope scope = app.Services.CreateScope();
 
-        var httpClient = scope.ServiceProvider.GetRequiredService<AuctionSvcHttpClient>();
+        AuctionSvcHttpClient httpClient = scope.ServiceProvider.GetRequiredService<AuctionSvcHttpClient>();
 
-        var items = await httpClient.GetItemsForSearchDb();
+        List<Item> items = await httpClient.GetItemsForSearchDb();
 
         Console.WriteLine(items.Count + " returned from the auction service");
 

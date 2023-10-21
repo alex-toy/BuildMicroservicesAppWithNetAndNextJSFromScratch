@@ -90,7 +90,15 @@ MassTransit.RabbitMQ
 ```
 docker compose up -d
 ```
-<img src="/pictures/mongodb.png" title="mongodb"  width="900">
+<img src="/pictures/mongodb.png" title="search"  width="900">
 
+### Test the API
 
-mongodb://localhost:27017/?readPreference=primary&ssl=false&directConnection=true
+- Get all items
+<img src="/pictures/search.png" title="search"  width="900">
+
+- Get all cars with make of Ford
+<img src="/pictures/search1.png" title="search"  width="900">
+
+- Get all items With PageSize and PageNumber
+<img src="/pictures/search2.png" title="search"  width="900">

@@ -3,7 +3,6 @@ using AuctionService.Entities;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 using System.Linq.Expressions;
 
 namespace AuctionService.Data;
@@ -44,8 +43,8 @@ public class AuctionRepository : IAuctionRepository
 
         if (!string.IsNullOrEmpty(date))
         {
-            Predicate<Auction> isUpdated = x => x.UpdatedAt.CompareTo(DateTime.Parse(date).ToUniversalTime()) > 0;
-            query = query.Where(x => isUpdated(x));
+            Expression<Func<Auction, bool>> auctionIsUpdated = x => x.UpdatedAt.CompareTo(DateTime.Parse(date).ToUniversalTime()) > 0;
+            query = query.Where(auctionIsUpdated);
         }
 
         return await query.ProjectTo<AuctionDto>(_mapper.ConfigurationProvider).ToListAsync();

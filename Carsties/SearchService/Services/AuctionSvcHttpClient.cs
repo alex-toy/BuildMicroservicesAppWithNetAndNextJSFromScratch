@@ -1,4 +1,6 @@
-﻿using MongoDB.Entities;
+﻿using MongoDB.Driver;
+using MongoDB.Entities;
+using System.Linq.Expressions;
 
 namespace SearchService;
 
@@ -15,12 +17,14 @@ public class AuctionSvcHttpClient
 
     public async Task<List<Item>> GetItemsForSearchDb()
     {
-        var lastUpdated = await DB.Find<Item, string>()
-            .Sort(x => x.Descending(x => x.UpdatedAt))
-            .Project(x => x.UpdatedAt.ToString())
-            .ExecuteFirstAsync();
+        Func<SortDefinitionBuilder<Item>, SortDefinition<Item>> byUpdateDate = x => x.Descending(x => x.UpdatedAt);
 
-        return await _httpClient.GetFromJsonAsync<List<Item>>(_config["AuctionServiceUrl"] 
-            + "/api/auctions?date=" + lastUpdated);
+        Expression<Func<Item, string>> udpdate = x => x.UpdatedAt.ToString();
+
+        string lastUpdated = await DB.Find<Item, string>().Sort(byUpdateDate).Project(udpdate).ExecuteFirstAsync();
+
+        string requestUri = _config["AuctionServiceUrl"] + "/api/auctions?date=" + lastUpdated;
+
+        return await _httpClient.GetFromJsonAsync<List<Item>>(requestUri);
     }
 }

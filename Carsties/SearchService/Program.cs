@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-//builder.Services.AddHttpClient<AuctionSvcHttpClient>().AddPolicyHandler(GetPolicy());
+builder.Services.AddHttpClient<AuctionSvcHttpClient>(); //.AddPolicyHandler(GetPolicy());
 
 //builder.Services.AddMassTransit(x =>
 //{
