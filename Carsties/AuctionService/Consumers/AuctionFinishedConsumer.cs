@@ -1,6 +1,6 @@
 ﻿using AuctionService.Data;
 using AuctionService.Entities;
-using Contracts;
+using Contracts.AuctionEvents;
 using MassTransit;
 
 namespace AuctionService.Consumers;

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Contracts;
+using Contracts.AuctionEvents;
 using MassTransit;
 using MongoDB.Entities;
 

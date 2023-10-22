@@ -102,8 +102,16 @@ docker compose up -d
 
 ## RabbitMQ
 
+### Nuget Packages
+```
+MassTransit.RabbitMQ
+```
+
 - Add RabbitMQ container
 ```
 docker compose up -d
 ```
 <img src="/pictures/rabbitmq.png" title="rabbitmq"  width="900">
+
+- connect to rabbitmq (guest/guest)
+<img src="/pictures/rabbitmq1.png" title="rabbitmq"  width="900">
