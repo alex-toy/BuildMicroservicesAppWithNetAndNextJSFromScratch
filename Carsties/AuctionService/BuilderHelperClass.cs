@@ -1,4 +1,5 @@
-﻿using AuctionService.Data;
+﻿using AuctionService.Consumers;
+using AuctionService.Data;
 using Contracts;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,7 +26,7 @@ namespace AuctionService
 
         public static void ConfigureMassTransit(this WebApplicationBuilder builder)
         {
-            builder.Services.ConfigureMassTransit();
+            builder.Services.ConfigureMassTransit<AuctionCreatedFaultConsumer>("auction");
         }
 
         //public static void ConfigureAuthentication(this WebApplicationBuilder builder)

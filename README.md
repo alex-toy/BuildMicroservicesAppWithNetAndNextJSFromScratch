@@ -115,3 +115,15 @@ docker compose up -d
 
 - connect to rabbitmq (guest/guest)
 <img src="/pictures/rabbitmq1.png" title="rabbitmq"  width="900">
+
+- run the application and see the exchanges created
+<img src="/pictures/rabbitmq2.png" title="rabbitmq"  width="900">
+
+- create an auction
+<img src="/pictures/rabbitmq3.png" title="rabbitmq"  width="900">
+
+- see the result in rabbitmq
+<img src="/pictures/rabbitmq4.png" title="rabbitmq"  width="900">
+
+- check that the auction was created
+<img src="/pictures/rabbitmq5.png" title="rabbitmq"  width="900">

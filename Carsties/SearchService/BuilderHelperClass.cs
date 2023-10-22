@@ -6,7 +6,7 @@ namespace SearchService
     {
         public static void ConfigureMassTransit(this WebApplicationBuilder builder)
         {
-            builder.Services.ConfigureMassTransit();
+            builder.Services.ConfigureMassTransit<AuctionCreatedConsumer>("search");
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Contracts
 {
     public static class ServiceBusHelper
     {
-        public static void ConfigureMassTransit(this IServiceCollection services)
+        public static void ConfigureMassTransit<T>(this IServiceCollection services, string formatter)
         {
             services.AddMassTransit(x =>
             {
@@ -17,9 +17,9 @@ namespace Contracts
                 //    o.UseBusOutbox();
                 //});
 
-                //x.AddConsumersFromNamespaceContaining<AuctionCreatedFaultConsumer>();
+                x.AddConsumersFromNamespaceContaining<T>();
 
-                //x.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("auction", false));
+                x.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(formatter, false));
 
                 x.UsingRabbitMq((context, cfg) =>
                 {

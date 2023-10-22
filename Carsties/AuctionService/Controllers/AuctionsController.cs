@@ -2,6 +2,8 @@
 using AuctionService.DTOs;
 using AuctionService.Entities;
 using AutoMapper;
+using Contracts.AuctionEvents;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AuctionService.Controllers;
@@ -12,13 +14,13 @@ public class AuctionsController : ControllerBase
 {
     private readonly IAuctionRepository _repo;
     private readonly IMapper _mapper;
-    //private readonly IPublishEndpoint _publishEndpoint;
+    private readonly IPublishEndpoint _publishEndpoint;
 
-    public AuctionsController(IAuctionRepository repo, IMapper mapper)
+    public AuctionsController(IAuctionRepository repo, IMapper mapper, IPublishEndpoint publishEndpoint)
     {
         _repo = repo;
         _mapper = mapper;
-        //_publishEndpoint = publishEndpoint;
+        _publishEndpoint = publishEndpoint;
     }
 
     [HttpGet]
@@ -41,7 +43,7 @@ public class AuctionsController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<AuctionDto>> CreateAuction(CreateAuctionDto auctionDto)
     {
-        var auction = _mapper.Map<Auction>(auctionDto);
+        Auction auction = _mapper.Map<Auction>(auctionDto);
 
         auction.Seller = User.Identity.Name;
 
@@ -49,7 +51,7 @@ public class AuctionsController : ControllerBase
 
         AuctionDto newAuction = _mapper.Map<AuctionDto>(auction);
 
-        //await _publishEndpoint.Publish(_mapper.Map<AuctionCreated>(newAuction));
+        await SendEventToServiceBus<AuctionCreated>(newAuction);
 
         bool result = await _repo.SaveChangesAsync();
 
@@ -62,15 +64,15 @@ public class AuctionsController : ControllerBase
     [HttpPut("{id}")]
     public async Task<ActionResult> UpdateAuction(Guid id, UpdateAuctionDto updateAuctionDto)
     {
-        var auction = await _repo.GetAuctionEntityById(id);
+        Auction auction = await _repo.GetAuctionEntityById(id);
 
         if (auction == null) return NotFound();
 
         if (auction.Seller != User.Identity.Name) return Forbid();
 
         auction.UpdateBasedOn(updateAuctionDto);
-
-        //await _publishEndpoint.Publish(_mapper.Map<AuctionUpdated>(auction));
+        AuctionDto updatedAuction = _mapper.Map<AuctionDto>(auction);
+        await SendEventToServiceBus<AuctionUpdated>(updatedAuction);
 
         var result = await _repo.SaveChangesAsync();
 
@@ -92,12 +94,17 @@ public class AuctionsController : ControllerBase
 
         _repo.RemoveAuction(auction);
 
-        //await _publishEndpoint.Publish<AuctionDeleted>(new { Id = auction.Id.ToString() });
+        await _publishEndpoint.Publish<AuctionDeleted>(new { Id = auction.Id.ToString() });
 
         var result = await _repo.SaveChangesAsync();
 
         if (!result) return BadRequest("Could not update DB");
 
         return Ok();
+    }
+
+    private async Task SendEventToServiceBus<T>(Dto newAuction)
+    {
+        await _publishEndpoint.Publish(_mapper.Map<T>(newAuction));
     }
 }

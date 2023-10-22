@@ -3,7 +3,7 @@
 namespace AuctionService.Entities;
 
 [Table("AuctionDb")]
-public class Auction
+public class Auction : Entity
 {
     public Guid Id { get; set; }
     public int ReservePrice { get; set; } = 0;
