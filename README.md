@@ -101,3 +101,9 @@ docker compose up -d
 
 
 ## RabbitMQ
+
+- Add RabbitMQ container
+```
+docker compose up -d
+```
+<img src="/pictures/rabbitmq.png" title="rabbitmq"  width="900">
