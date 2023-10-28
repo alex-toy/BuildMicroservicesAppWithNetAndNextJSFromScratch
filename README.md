@@ -148,3 +148,30 @@ Add-Migration outbox
 
 - run RabbitMQ again and search the item. This time you have a result
 <img src="/pictures/rabbitmq91.png" title="rabbitmq"  width="900">
+
+
+## Identity Server
+
+### Create Service
+```
+dotnet new isaspid -o IdentityService
+```
+
+### Nuget Packages
+```
+Npgsql.EntityFrameworkCore.PostGreSQL
+Polly
+Serilog.AspNetCore
+```
+
+- run the Identity Service
+<img src="/pictures/identity.png" title="identity service"  width="900">
+
+- run
+```
+Add-Migration InitialCreate
+Update-Database
+```
+
+- connect to the postgres database : localhost / postgres / postgrespw
+<img src="/pictures/identity2.png" title="identity service"  width="900">
