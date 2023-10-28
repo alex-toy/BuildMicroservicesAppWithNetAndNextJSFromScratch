@@ -27,6 +27,7 @@ This project aims to see how to build a microservices based app using .Net for t
 Automapper.Extensions.Microsoft.DependencyInjection
 Microsoft.AspNetCore.Authentication.JwtBearer
 Microsoft.EntityFrameworkCore.Design
+Microsoft.EntityFrameworkCore.Tools
 Npgsql.EntityFrameworkCore.PostGreSQL
 MassTransit.RabbitMQ
 MassTransit.EntityFrameworkCore
@@ -129,3 +130,21 @@ docker compose up -d
 
 - check that the auction was created
 <img src="/pictures/rabbitmq5.png" title="rabbitmq"  width="900">
+
+- run
+```
+Add-Migration outbox
+```
+
+- stop RabbitMQ
+<img src="/pictures/rabbitmq6.png" title="rabbitmq"  width="900">
+
+- create a new auction. Since RabbitMQ is off, the message ends up in the OutboxMessage table, waiting to be delivered to the queue.
+<img src="/pictures/rabbitmq7.png" title="rabbitmq"  width="900">
+<img src="/pictures/rabbitmq8.png" title="rabbitmq"  width="900">
+
+- if you try to get that auction from the search service, you will obviously get no result beacause RabbitMQ is off.
+<img src="/pictures/rabbitmq9.png" title="rabbitmq"  width="900">
+
+- run RabbitMQ again and search the item. This time you have a result
+<img src="/pictures/rabbitmq91.png" title="rabbitmq"  width="900">

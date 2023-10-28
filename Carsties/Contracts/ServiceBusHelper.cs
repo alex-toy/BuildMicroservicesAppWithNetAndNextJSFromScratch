@@ -41,7 +41,7 @@ namespace Contracts
             });
         }
 
-        public static void ConfigureMassTransitConsumer<T>(this IServiceCollection services, string username, string password, string host)
+        public static void ConfigureMassTransitConsumer<T>(this IServiceCollection services, string username, string password, string host) where T : class, IConsumer
         {
             services.AddMassTransit(x =>
             {
