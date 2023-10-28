@@ -26,7 +26,7 @@ namespace AuctionService
 
         public static void ConfigureMassTransit(this WebApplicationBuilder builder)
         {
-            builder.Services.ConfigureMassTransit<AuctionCreatedFaultConsumer>("auction");
+            builder.Services.ConfigureMassTransitProducer<AuctionCreatedFaultConsumer, AuctionDbContext>("auction");
         }
 
         //public static void ConfigureAuthentication(this WebApplicationBuilder builder)

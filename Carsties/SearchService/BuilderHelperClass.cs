@@ -6,7 +6,10 @@ namespace SearchService
     {
         public static void ConfigureMassTransit(this WebApplicationBuilder builder)
         {
-            builder.Services.ConfigureMassTransit<AuctionCreatedConsumer>("search");
+            string username = builder.Configuration.GetValue("RabbitMq:Username", "guest");
+            string password = builder.Configuration.GetValue("RabbitMq:Password", "guest");
+            string host = builder.Configuration["RabbitMq:Host"];
+            builder.Services.ConfigureMassTransitConsumer<AuctionCreatedConsumer>(username, password, host);
         }
     }
 }

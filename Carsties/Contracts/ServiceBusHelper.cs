@@ -1,21 +1,22 @@
 ﻿using MassTransit;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Contracts
 {
     public static class ServiceBusHelper
     {
-        public static void ConfigureMassTransit<T>(this IServiceCollection services, string formatter)
+        public static void ConfigureMassTransitProducer<T, TContext>(this IServiceCollection services, string formatter) where TContext : DbContext
         {
             services.AddMassTransit(x =>
             {
-                //x.AddEntityFrameworkOutbox<AuctionDbContext>(o =>
-                //{
-                //    o.QueryDelay = TimeSpan.FromSeconds(10);
+                x.AddEntityFrameworkOutbox<TContext>(o =>
+                {
+                    o.QueryDelay = TimeSpan.FromSeconds(10);
 
-                //    o.UsePostgres();
-                //    o.UseBusOutbox();
-                //});
+                    o.UsePostgres();
+                    o.UseBusOutbox();
+                });
 
                 x.AddConsumersFromNamespaceContaining<T>();
 
@@ -34,6 +35,40 @@ namespace Contracts
                     //    host.Username(builder.Configuration.GetValue("RabbitMq:Username", "guest"));
                     //    host.Password(builder.Configuration.GetValue("RabbitMq:Password", "guest"));
                     //});
+
+                    cfg.ConfigureEndpoints(context);
+                });
+            });
+        }
+
+        public static void ConfigureMassTransitConsumer<T>(this IServiceCollection services, string username, string password, string host)
+        {
+            services.AddMassTransit(x =>
+            {
+                x.AddConsumersFromNamespaceContaining<T>();
+
+                x.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("search", false));
+
+                x.UsingRabbitMq((context, cfg) =>
+                {
+                    cfg.UseRetry(r =>
+                    {
+                        r.Handle<RabbitMqConnectionException>();
+                        r.Interval(5, TimeSpan.FromSeconds(10));
+                    });
+
+                    cfg.Host(host, "/", host =>
+                    {
+                        host.Username(username);
+                        host.Password(password);
+                    });
+
+                    cfg.ReceiveEndpoint("search-auction-created", e =>
+                    {
+                        e.UseMessageRetry(r => r.Interval(5, 5));
+
+                        e.ConfigureConsumer<T>(context);
+                    });
 
                     cfg.ConfigureEndpoints(context);
                 });

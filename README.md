@@ -29,6 +29,7 @@ Microsoft.AspNetCore.Authentication.JwtBearer
 Microsoft.EntityFrameworkCore.Design
 Npgsql.EntityFrameworkCore.PostGreSQL
 MassTransit.RabbitMQ
+MassTransit.EntityFrameworkCore
 ```
 
 ### PostgreSQL
@@ -40,6 +41,7 @@ Add-Migration InitialCreate
 
 - Add PostgreSQL container
 ```
+docker compose down
 docker compose up -d
 ```
 <img src="/pictures/postgres.png" title="postgres"  width="900">
