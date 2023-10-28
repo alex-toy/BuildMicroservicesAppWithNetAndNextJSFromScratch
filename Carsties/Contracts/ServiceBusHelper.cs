@@ -6,7 +6,7 @@ namespace Contracts
 {
     public static class ServiceBusHelper
     {
-        public static void ConfigureMassTransitProducer<T, TContext>(this IServiceCollection services, string formatter) where TContext : DbContext
+        public static void ConfigureMassTransitProducer<T, TContext>(this IServiceCollection services, string formatter, string username, string password, string host) where TContext : DbContext
         {
             services.AddMassTransit(x =>
             {
@@ -24,17 +24,17 @@ namespace Contracts
 
                 x.UsingRabbitMq((context, cfg) =>
                 {
-                    //cfg.UseRetry(r =>
-                    //{
-                    //    r.Handle<RabbitMqConnectionException>();
-                    //    r.Interval(5, TimeSpan.FromSeconds(10));
-                    //});
+                    cfg.UseMessageRetry(r =>
+                    {
+                        r.Handle<RabbitMqConnectionException>();
+                        r.Interval(5, TimeSpan.FromSeconds(10));
+                    });
 
-                    //cfg.Host(builder.Configuration["RabbitMq:Host"], "/", host =>
-                    //{
-                    //    host.Username(builder.Configuration.GetValue("RabbitMq:Username", "guest"));
-                    //    host.Password(builder.Configuration.GetValue("RabbitMq:Password", "guest"));
-                    //});
+                    cfg.Host(host, "/", host =>
+                    {
+                        host.Username(username);
+                        host.Password(password);
+                    });
 
                     cfg.ConfigureEndpoints(context);
                 });
@@ -51,7 +51,7 @@ namespace Contracts
 
                 x.UsingRabbitMq((context, cfg) =>
                 {
-                    cfg.UseRetry(r =>
+                    cfg.UseMessageRetry(r =>
                     {
                         r.Handle<RabbitMqConnectionException>();
                         r.Interval(5, TimeSpan.FromSeconds(10));
@@ -66,7 +66,6 @@ namespace Contracts
                     cfg.ReceiveEndpoint("search-auction-created", e =>
                     {
                         e.UseMessageRetry(r => r.Interval(5, 5));
-
                         e.ConfigureConsumer<T>(context);
                     });
 

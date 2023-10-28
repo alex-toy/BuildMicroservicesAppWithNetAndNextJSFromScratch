@@ -10,7 +10,7 @@ public static class DbInitializer
 
     public static async Task InitMongoDb(this WebApplication app)
     {
-        string connectionString = app.Configuration.GetConnectionString("MongoDbConnectionTest");
+        string connectionString = app.Configuration.GetConnectionString("MongoDbConnection");
         MongoClientSettings settings = MongoClientSettings.FromConnectionString(connectionString);
         await DB.InitAsync("SearchDb", settings);
 

@@ -26,7 +26,10 @@ namespace AuctionService
 
         public static void ConfigureMassTransit(this WebApplicationBuilder builder)
         {
-            builder.Services.ConfigureMassTransitProducer<AuctionCreatedFaultConsumer, AuctionDbContext>("auction");
+            string host = builder.Configuration["RabbitMq:Host"];
+            string username = builder.Configuration.GetValue("RabbitMq:Username", "guest");
+            string password = builder.Configuration.GetValue("RabbitMq:Password", "guest");
+            builder.Services.ConfigureMassTransitProducer<AuctionCreatedFaultConsumer, AuctionDbContext>("auction", username, password, host);
         }
 
         //public static void ConfigureAuthentication(this WebApplicationBuilder builder)

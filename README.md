@@ -143,7 +143,7 @@ Add-Migration outbox
 <img src="/pictures/rabbitmq7.png" title="rabbitmq"  width="900">
 <img src="/pictures/rabbitmq8.png" title="rabbitmq"  width="900">
 
-- if you try to get that auction from the search service, you will obviously get no result beacause RabbitMQ is off.
+- if you try to get that auction from the search service, you will obviously get no result because RabbitMQ is off.
 <img src="/pictures/rabbitmq9.png" title="rabbitmq"  width="900">
 
 - run RabbitMQ again and search the item. This time you have a result

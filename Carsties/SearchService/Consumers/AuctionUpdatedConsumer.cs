@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Contracts.AuctionEvents;
 using MassTransit;
+using MongoDB.Driver;
 using MongoDB.Entities;
 
 namespace SearchService;
@@ -17,21 +18,13 @@ public class AuctionUpdatedConsumer : IConsumer<AuctionUpdated>
     {
         Console.WriteLine("--> Consuming auction updated: " + context.Message.Id);
 
-        var item = _mapper.Map<Item>(context.Message);
+        Item item = _mapper.Map<Item>(context.Message);
 
-        var result = await DB.Update<Item>()
+        UpdateResult result = await DB.Update<Item>()
             .Match(a => a.ID == context.Message.Id)
-            .ModifyOnly(x => new
-            {
-                x.Color,
-                x.Make,
-                x.Model,
-                x.Year,
-                x.Mileage
-            }, item)
+            .ModifyOnly(x => new { x.Color, x.Make, x.Model, x.Year, x.Mileage }, item)
             .ExecuteAsync();
 
-        if (!result.IsAcknowledged) 
-            throw new MessageException(typeof(AuctionUpdated), "Problem updating mongodb");
+        if (!result.IsAcknowledged) throw new MessageException(typeof(AuctionUpdated), "Problem updating mongodb");
     }
 }
