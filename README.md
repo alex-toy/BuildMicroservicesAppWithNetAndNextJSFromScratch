@@ -175,3 +175,7 @@ Update-Database
 
 - connect to the postgres database : localhost / postgres / postgrespw
 <img src="/pictures/identity2.png" title="identity service"  width="900">
+
+- get a token
+<img src="/pictures/identity3.png" title="identity service"  width="900">
+<img src="/pictures/identity4.png" title="identity service"  width="900">
