@@ -13,12 +13,14 @@ builder.ConfigureMassTransit();
 
 builder.ConfigureInterfaces();
 
+builder.ConfigureAuthentication();
+
 
 
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
+app.UseAuthentication();
 
 app.UseAuthorization();
 

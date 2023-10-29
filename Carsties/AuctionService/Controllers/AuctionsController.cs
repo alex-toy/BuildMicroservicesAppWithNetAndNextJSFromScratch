@@ -4,6 +4,7 @@ using AuctionService.Entities;
 using AutoMapper;
 using Contracts.AuctionEvents;
 using MassTransit;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AuctionService.Controllers;
@@ -39,7 +40,7 @@ public class AuctionsController : ControllerBase
         return auction;
     }
 
-    //[Authorize]
+    [Authorize]
     [HttpPost]
     public async Task<ActionResult<AuctionDto>> CreateAuction(CreateAuctionDto auctionDto)
     {
@@ -60,7 +61,7 @@ public class AuctionsController : ControllerBase
         return CreatedAtAction(nameof(GetAuctionById), new { auction.Id }, newAuction);
     }
 
-    //[Authorize]
+    [Authorize]
     [HttpPut("{id}")]
     public async Task<ActionResult> UpdateAuction(Guid id, UpdateAuctionDto updateAuctionDto)
     {
@@ -71,8 +72,7 @@ public class AuctionsController : ControllerBase
         if (auction.Seller != User.Identity.Name) return Forbid();
 
         auction.UpdateBasedOn(updateAuctionDto);
-        AuctionDto updatedAuction = _mapper.Map<AuctionDto>(auction);
-        await SendEventToServiceBus<AuctionUpdated>(updatedAuction);
+        await SendEventToServiceBus<AuctionUpdated>(auction);
 
         var result = await _repo.SaveChangesAsync();
 
@@ -82,7 +82,7 @@ public class AuctionsController : ControllerBase
 
     }
 
-    //[Authorize]
+    [Authorize]
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteAuction(Guid id)
     {
@@ -94,7 +94,8 @@ public class AuctionsController : ControllerBase
 
         _repo.RemoveAuction(auction);
 
-        await _publishEndpoint.Publish<AuctionDeleted>(new { Id = auction.Id.ToString() });
+        //await _publishEndpoint.Publish<AuctionDeleted>(new AuctionDto{ Id = auction.Id });
+        await SendEventToServiceBus<AuctionDeleted>(new AuctionDto { Id = auction.Id });
 
         var result = await _repo.SaveChangesAsync();
 
@@ -105,6 +106,13 @@ public class AuctionsController : ControllerBase
 
     private async Task SendEventToServiceBus<T>(Dto newAuction)
     {
-        await _publishEndpoint.Publish(_mapper.Map<T>(newAuction));
+        T message = _mapper.Map<T>(newAuction);
+        await _publishEndpoint.Publish(message);
+    }
+
+    private async Task SendEventToServiceBus<T>(Auction auction)
+    {
+        T message = _mapper.Map<T>(auction);
+        await _publishEndpoint.Publish(message);
     }
 }

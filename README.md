@@ -179,3 +179,18 @@ Update-Database
 - get a token
 <img src="/pictures/identity3.png" title="identity service"  width="900">
 <img src="/pictures/identity4.png" title="identity service"  width="900">
+
+- create an auction with no authorization
+<img src="/pictures/identity5.png" title="identity service"  width="900">
+
+- create an auction with authorization
+<img src="/pictures/identity6.png" title="identity service"  width="900">
+
+- update an auction with no authorization
+<img src="/pictures/identity7.png" title="identity service"  width="900">
+
+- update an auction with authorization
+<img src="/pictures/identity8.png" title="identity service"  width="900">
+
+- delete an auction with authorization
+<img src="/pictures/identity9.png" title="identity service"  width="900">
