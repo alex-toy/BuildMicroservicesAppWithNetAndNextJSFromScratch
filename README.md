@@ -201,7 +201,28 @@ Update-Database
 ### Nuget Packages
 ```
 Yarp.ReverseProxy
+Microsoft.AspNetCore.Authentication.JwtBearer
 ```
 
-- run the Identity Service
-<img src="/pictures/identity.png" title="identity service"  width="900">
+### Run the Gateway Service
+
+- get a token for bob
+<img src="/pictures/gateway.png" title="gateway service"  width="900">
+
+- get all items
+<img src="/pictures/gateway1.png" title="gateway service"  width="900">
+
+- get all cars with make of Ford
+<img src="/pictures/gateway2.png" title="gateway service"  width="900">
+
+- create new Auction as Alice
+<img src="/pictures/gateway3.png" title="gateway service"  width="900">
+
+- Update the created auction as Bob
+<img src="/pictures/gateway4.png" title="gateway service"  width="900">
+
+- Update the created auction as Alice
+<img src="/pictures/gateway5.png" title="gateway service"  width="900">
+
+- Delete auction as Alice
+<img src="/pictures/gateway6.png" title="gateway service"  width="900">

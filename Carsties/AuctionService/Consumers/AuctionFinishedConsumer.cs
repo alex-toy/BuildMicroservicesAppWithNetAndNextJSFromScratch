@@ -18,7 +18,7 @@ public class AuctionFinishedConsumer : IConsumer<AuctionFinished>
     {
         Console.WriteLine("--> Consuming auction finished");
 
-        var auction = await _dbContext.Auctions.FindAsync(Guid.Parse(context.Message.AuctionId));
+        Auction auction = await _dbContext.Auctions.FindAsync(Guid.Parse(context.Message.AuctionId));
 
         if (context.Message.ItemSold)
         {
@@ -27,7 +27,8 @@ public class AuctionFinishedConsumer : IConsumer<AuctionFinished>
         }
 
         auction.Status = auction.SoldAmount > auction.ReservePrice
-            ? Status.Finished : Status.ReserveNotMet;
+            ? Status.Finished 
+            : Status.ReserveNotMet;
 
         await _dbContext.SaveChangesAsync();
     }
