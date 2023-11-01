@@ -194,3 +194,14 @@ Update-Database
 
 - delete an auction with authorization
 <img src="/pictures/identity9.png" title="identity service"  width="900">
+
+
+## Gateway Service
+
+### Nuget Packages
+```
+Yarp.ReverseProxy
+```
+
+- run the Identity Service
+<img src="/pictures/identity.png" title="identity service"  width="900">

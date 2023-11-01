@@ -4,18 +4,18 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.ConfigureReverseProxy();
 
-builder.ConfigureAuthentication();
+//builder.ConfigureAuthentication();
 
-builder.ConfigureCors();
+//builder.ConfigureCors();
 
 
 var app = builder.Build();
 
-app.UseCors();
+//app.UseCors();
 
-//app.MapReverseProxy();
+app.MapReverseProxy();
 
-app.UseAuthentication();
-app.UseAuthorization();
+//app.UseAuthentication();
+//app.UseAuthorization();
 
 app.Run();
