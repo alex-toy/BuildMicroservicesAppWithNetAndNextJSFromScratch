@@ -15,6 +15,8 @@ This project aims to see how to build a microservices based app using .Net for t
 - Publishing locally to Kubernetes
 - Publishing the app to a Kubernetes cluster on the internet
 
+Udemy course : https://www.udemy.com/course/build-a-microservices-app-with-dotnet-and-nextjs-from-scratch
+
 
 ## General architecture
 <img src="/pictures/architecture.png" title="architecture"  width="900">
@@ -226,3 +228,25 @@ Microsoft.AspNetCore.Authentication.JwtBearer
 
 - Delete auction as Alice
 <img src="/pictures/gateway6.png" title="gateway service"  width="900">
+
+
+## Dockerize
+
+- run
+```
+docker tag auctionservice:latest dockeralexei/auctionservice:latest
+docker push dockeralexei/auctionservice:latest
+
+docker tag searchservice:latest dockeralexei/searchservice:latest
+docker push dockeralexei/searchservice:latest
+
+docker tag identityservice:latest dockeralexei/identityservice:latest
+docker push dockeralexei/identityservice:latest
+
+docker tag gatewayservice:latest dockeralexei/gatewayservice:latest
+docker push dockeralexei/gatewayservice:latest
+
+docker compose up -d
+```
+<img src="/pictures/docker.png" title="docker repo"  width="900">
+
