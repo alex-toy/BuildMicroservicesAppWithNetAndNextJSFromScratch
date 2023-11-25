@@ -250,3 +250,14 @@ docker compose up -d
 ```
 <img src="/pictures/docker.png" title="docker repo"  width="900">
 
+
+## Frontend
+
+### Create app
+
+- run
+```
+npx create-next-app@latest
+npm run dev
+```
+
