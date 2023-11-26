@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-// import AuctionCard from './AuctionCard';
+import AuctionCard from './AuctionCard';
 // import { Auction, PagedResult } from '@/types';
 // import AppPagination from '../components/AppPagination';
 // import { getData } from '../actions/auctionActions';
@@ -52,8 +52,9 @@ export default function Listings() {
 
     return (
         <>
-            {/* <Filters />
-            {data.totalCount === 0 ? (
+            {/* <Filters /> */}
+
+            {/* {data.totalCount === 0 ? (
                 <EmptyFilter showReset />
             ) : (
                 <>
