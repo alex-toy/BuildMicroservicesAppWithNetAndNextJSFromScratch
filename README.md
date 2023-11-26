@@ -246,6 +246,7 @@ docker push dockeralexei/identityservice:latest
 docker tag gatewayservice:latest dockeralexei/gatewayservice:latest
 docker push dockeralexei/gatewayservice:latest
 
+docker compose down
 docker compose up -d
 ```
 <img src="/pictures/docker.png" title="docker repo"  width="900">

@@ -23,7 +23,7 @@ try
 
     // this seeding is only for the template to bootstrap the DB and users.
     // in production you will likely want a different approach.
-    SeedData.EnsureSeedData(app);
+    //SeedData.EnsureSeedData(app);
 
     app.Run();
 }
