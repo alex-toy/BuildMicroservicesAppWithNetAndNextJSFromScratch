@@ -50,8 +50,8 @@ internal static class HostingExtensions
 
     private static void ConfigureDb(this WebApplicationBuilder builder)
     {
-        builder.Services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+        string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+        builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
     }
 
     public static WebApplication ConfigurePipeline(this WebApplication app)
