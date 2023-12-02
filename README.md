@@ -247,12 +247,16 @@ docker tag gatewayservice:latest dockeralexei/gatewayservice:latest
 docker push dockeralexei/gatewayservice:latest
 
 docker compose down
+docker compose build <service_name>
 docker compose up -d
 ```
 <img src="/pictures/docker.png" title="docker repo"  width="900">
 
 
 ## Frontend
+
+At this point you should be able to log as bob in the identity server
+<img src="/pictures/bob.png" title="bob"  width="900">
 
 ### Create app
 

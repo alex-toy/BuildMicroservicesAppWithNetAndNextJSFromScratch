@@ -15,6 +15,9 @@ services:
       - 5432:5432
     volumes:
       - /var/lib/postresql/data
+    networks:
+      custom:
+
 
   mongodb:
     image: mongo
@@ -25,16 +28,22 @@ services:
       - 27017:27017
     volumes:
       - /var/lib/mongodb/data
+    networks:
+      custom:
       
+
   rabbitmq:
     image: rabbitmq:3-management-alpine
     ports:
       - 5672:5672
       - 15672:15672
+    networks:
+      custom:
+
 
   auction-svc:
-    image: dockeralexei/auctionservice:latest
-    # image: auctionservice
+    # image: dockeralexei/auctionservice:latest
+    image: auctionservice
     build: 
       context: .
       dockerfile: AuctionService/Dockerfile
@@ -58,11 +67,13 @@ services:
     networks:
       custom:
 
+
   search-svc:
-    image: dockeralexei/searchservice:latest
+    # image: dockeralexei/searchservice:latest
+    image: searchservice
     build: 
       context: .
-      dockerfile: src/SearchService/Dockerfile
+      dockerfile: SearchService/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
@@ -76,6 +87,7 @@ services:
       - rabbitmq
     networks:
       custom:
+
 
   identity-svc:
     # image: dockeralexei/identityservice:latest
@@ -96,13 +108,15 @@ services:
       - postgres
     networks:
       custom:
-        # ipv4_address: 10.5.0.200
+        ipv4_address: 10.5.0.200
+
 
   gateway-svc:
-    image: dockeralexei/gatewayservice:latest
+    # image: dockeralexei/gatewayservice:latest
+    image: gatewayservice
     build: 
       context: .
-      dockerfile: src/GatewayService/Dockerfile
+      dockerfile: GatewayService/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80

@@ -39,6 +39,11 @@ internal static class HostingExtensions
                 options.Events.RaiseInformationEvents = true;
                 options.Events.RaiseFailureEvents = true;
                 options.Events.RaiseSuccessEvents = true;
+
+                if (builder.Environment.IsEnvironment("Docker"))  options.IssuerUri = "identity-svc";
+
+                if (builder.Environment.IsProduction()) options.IssuerUri = "https://id.trycatchlearn.com";
+
                 //options.EmitStaticAudienceClaim = true;
             })
             .AddInMemoryIdentityResources(Config.IdentityResources)
