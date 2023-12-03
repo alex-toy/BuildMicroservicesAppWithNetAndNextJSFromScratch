@@ -1,5 +1,5 @@
 import { numberWithCommas } from '@/app/lib/numberWithComma';
-import { Bid } from '@/types'
+import { Bid } from '@/app/models/Bid';
 import { format } from 'date-fns';
 import React from 'react'
 

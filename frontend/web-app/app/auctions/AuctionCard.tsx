@@ -1,9 +1,9 @@
 import React from 'react'
 import CountdownTimer from './CountdownTimer'
 import CarImage from './CarImage'
-import { Auction } from '@/types'
 import Link from 'next/link'
 import CurrentBid from './CurrentBid'
+import { Auction } from '../models/Auction'
 
 type Props = {
     auction: Auction

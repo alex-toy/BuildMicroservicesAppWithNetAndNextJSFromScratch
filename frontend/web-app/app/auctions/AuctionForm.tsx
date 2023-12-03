@@ -8,7 +8,7 @@ import DateInput from '../components/DateInput';
 import { createAuction, updateAuction } from '../actions/auctionActions';
 import { usePathname, useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
-import { Auction } from '@/types';
+import { Auction } from '../models/Auction';
 
 type Props = {
     auction?: Auction

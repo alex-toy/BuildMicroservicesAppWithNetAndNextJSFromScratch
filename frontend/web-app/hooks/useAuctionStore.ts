@@ -1,4 +1,5 @@
-import { Auction, PagedResult } from "@/types"
+import { Auction } from "@/app/models/Auction"
+import { PagedResult } from "@/types"
 import { create } from "zustand"
 
 type State = {

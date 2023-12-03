@@ -1,8 +1,9 @@
-import { Auction, AuctionFinished } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { numberWithCommas } from '../lib/numberWithComma'
+import { Auction } from '../models/Auction'
+import { AuctionFinished } from '../models/AuctionFinished'
 
 type Props = {
     finishedAuction: AuctionFinished

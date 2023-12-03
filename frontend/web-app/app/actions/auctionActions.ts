@@ -1,10 +1,12 @@
 'use server'
 
-import { Auction, Bid, PagedResult } from "@/types";
+import { PagedResult } from "@/types";
 import { getTokenWorkaround } from "./authActions";
 import { fetchWrapper } from "@/app/lib/fetchWrapper";
 import { FieldValues } from "react-hook-form";
 import { revalidatePath } from "next/cache";
+import { Auction } from "../models/Auction";
+import { Bid } from "../models/Bid";
 
 export async function getData(query: string): Promise<PagedResult<Auction>> {
     console.log(query)

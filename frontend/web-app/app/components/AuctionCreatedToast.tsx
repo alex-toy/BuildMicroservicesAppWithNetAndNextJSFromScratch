@@ -1,7 +1,7 @@
-import { Auction } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import { Auction } from '../models/Auction'
 
 type Props = {
     auction: Auction
