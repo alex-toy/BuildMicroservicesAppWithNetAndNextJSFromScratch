@@ -4,13 +4,13 @@ import { useBidStore } from '@/hooks/useBidStore';
 import { usePathname } from 'next/navigation';
 import React from 'react'
 import Countdown, { zeroPad } from 'react-countdown';
+import { CountdownTime } from '../models/CountDownTime';
 
 type Props = {
   auctionEnd: string;
 }
 
-const renderer = ({ days, hours, minutes, seconds, completed }:
-  { days: number, hours: number, minutes: number, seconds: number, completed: boolean }) => {
+const renderer = ({ days, hours, minutes, seconds, completed }: CountdownTime ) => {
   return (
     <div className={`
                 border-2 

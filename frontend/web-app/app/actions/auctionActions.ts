@@ -7,6 +7,7 @@ import { FieldValues } from "react-hook-form";
 import { revalidatePath } from "next/cache";
 
 export async function getData(query: string): Promise<PagedResult<Auction>> {
+    console.log(query)
     return await fetchWrapper.get(`search/${query}`)
 }
 

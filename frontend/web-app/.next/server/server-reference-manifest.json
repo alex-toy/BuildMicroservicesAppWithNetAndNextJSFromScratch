@@ -1,5 +1,69 @@
 {
-  "node": {},
-  "edge": {},
-  "encryptionKey": "mZyZCM8Jv6H0ZiNmgADB5yDTrAZRmAsPgezQl/AUBNg="
+  "node": {
+    "b5722d9ef9d80da2c6cf2d0df8bce9c64709be77": {
+      "workers": {
+        "app/page": "(sc_action)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Csource%5C%5CCsharpMicroservices%5C%5CBuildMicroservicesAppWithNetAndNextJSFromScratch%5C%5Cfrontend%5C%5Cweb-app%5C%5Capp%5C%5Cactions%5C%5CauctionActions.ts%22%2C%5B%22getData%22%2C%22updateAuctionTest%22%2C%22createAuction%22%2C%22getDetailedViewData%22%2C%22updateAuction%22%2C%22deleteAuction%22%2C%22getBidsForAuction%22%2C%22placeBidForAuction%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/page": "sc_action"
+      }
+    },
+    "688848d86f2efd95202d2fe45de88ef320a0ac67": {
+      "workers": {
+        "app/page": "(sc_action)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Csource%5C%5CCsharpMicroservices%5C%5CBuildMicroservicesAppWithNetAndNextJSFromScratch%5C%5Cfrontend%5C%5Cweb-app%5C%5Capp%5C%5Cactions%5C%5CauctionActions.ts%22%2C%5B%22getData%22%2C%22updateAuctionTest%22%2C%22createAuction%22%2C%22getDetailedViewData%22%2C%22updateAuction%22%2C%22deleteAuction%22%2C%22getBidsForAuction%22%2C%22placeBidForAuction%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/page": "sc_action"
+      }
+    },
+    "f1e3fff437c8e737770e9b83aae8eb64fda67082": {
+      "workers": {
+        "app/page": "(sc_action)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Csource%5C%5CCsharpMicroservices%5C%5CBuildMicroservicesAppWithNetAndNextJSFromScratch%5C%5Cfrontend%5C%5Cweb-app%5C%5Capp%5C%5Cactions%5C%5CauctionActions.ts%22%2C%5B%22getData%22%2C%22updateAuctionTest%22%2C%22createAuction%22%2C%22getDetailedViewData%22%2C%22updateAuction%22%2C%22deleteAuction%22%2C%22getBidsForAuction%22%2C%22placeBidForAuction%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/page": "sc_action"
+      }
+    },
+    "eda039f65b0e1e1b84b312c65e7e7a5107a769d6": {
+      "workers": {
+        "app/page": "(sc_action)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Csource%5C%5CCsharpMicroservices%5C%5CBuildMicroservicesAppWithNetAndNextJSFromScratch%5C%5Cfrontend%5C%5Cweb-app%5C%5Capp%5C%5Cactions%5C%5CauctionActions.ts%22%2C%5B%22getData%22%2C%22updateAuctionTest%22%2C%22createAuction%22%2C%22getDetailedViewData%22%2C%22updateAuction%22%2C%22deleteAuction%22%2C%22getBidsForAuction%22%2C%22placeBidForAuction%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/page": "sc_action"
+      }
+    },
+    "59349464f3a9288eeb3e93d86bf2d2e2d6cf994a": {
+      "workers": {
+        "app/page": "(sc_action)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Csource%5C%5CCsharpMicroservices%5C%5CBuildMicroservicesAppWithNetAndNextJSFromScratch%5C%5Cfrontend%5C%5Cweb-app%5C%5Capp%5C%5Cactions%5C%5CauctionActions.ts%22%2C%5B%22getData%22%2C%22updateAuctionTest%22%2C%22createAuction%22%2C%22getDetailedViewData%22%2C%22updateAuction%22%2C%22deleteAuction%22%2C%22getBidsForAuction%22%2C%22placeBidForAuction%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/page": "sc_action"
+      }
+    },
+    "d18a0f4a36540e3e2f6fefabc88b5a6fa5a2458b": {
+      "workers": {
+        "app/page": "(sc_action)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Csource%5C%5CCsharpMicroservices%5C%5CBuildMicroservicesAppWithNetAndNextJSFromScratch%5C%5Cfrontend%5C%5Cweb-app%5C%5Capp%5C%5Cactions%5C%5CauctionActions.ts%22%2C%5B%22getData%22%2C%22updateAuctionTest%22%2C%22createAuction%22%2C%22getDetailedViewData%22%2C%22updateAuction%22%2C%22deleteAuction%22%2C%22getBidsForAuction%22%2C%22placeBidForAuction%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/page": "sc_action"
+      }
+    },
+    "9e59d9eec6689b6f619f65bac8ffc526bf0f8a9c": {
+      "workers": {
+        "app/page": "(sc_action)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Csource%5C%5CCsharpMicroservices%5C%5CBuildMicroservicesAppWithNetAndNextJSFromScratch%5C%5Cfrontend%5C%5Cweb-app%5C%5Capp%5C%5Cactions%5C%5CauctionActions.ts%22%2C%5B%22getData%22%2C%22updateAuctionTest%22%2C%22createAuction%22%2C%22getDetailedViewData%22%2C%22updateAuction%22%2C%22deleteAuction%22%2C%22getBidsForAuction%22%2C%22placeBidForAuction%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/page": "sc_action"
+      }
+    },
+    "7577d934f44c2fb8618cf964f09fbb59810d08f2": {
+      "workers": {
+        "app/page": "(sc_action)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Csource%5C%5CCsharpMicroservices%5C%5CBuildMicroservicesAppWithNetAndNextJSFromScratch%5C%5Cfrontend%5C%5Cweb-app%5C%5Capp%5C%5Cactions%5C%5CauctionActions.ts%22%2C%5B%22getData%22%2C%22updateAuctionTest%22%2C%22createAuction%22%2C%22getDetailedViewData%22%2C%22updateAuction%22%2C%22deleteAuction%22%2C%22getBidsForAuction%22%2C%22placeBidForAuction%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/page": "sc_action"
+      }
+    }
+  },
+  "edge": {}
 }
