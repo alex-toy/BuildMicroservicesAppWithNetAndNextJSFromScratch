@@ -73,5 +73,32 @@ namespace Contracts
                 });
             });
         }
+
+        public static void ConfigureMassTransit<T>(this IServiceCollection services, string username, string password, string host) where T : class, IConsumer
+        {
+            services.AddMassTransit(x =>
+            {
+                x.AddConsumersFromNamespaceContaining<T>();
+
+                x.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("bids", false));
+
+                x.UsingRabbitMq((context, cfg) =>
+                {
+                    cfg.UseRetry(r =>
+                    {
+                        r.Handle<RabbitMqConnectionException>();
+                        r.Interval(5, TimeSpan.FromSeconds(10));
+                    });
+
+                    cfg.Host(host, "/", host =>
+                    {
+                        host.Username(username);
+                        host.Password(password);
+                    });
+
+                    cfg.ConfigureEndpoints(context);
+                });
+            });
+        }
     }
 }

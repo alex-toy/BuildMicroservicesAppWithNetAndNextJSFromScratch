@@ -276,6 +276,8 @@ dotnet new webapi -o BiddingService
 
 ### Nuget Packages
 ```
-Npgsql.EntityFrameworkCore.PostGreSQL
+Mongodb.Entities
+Microsoft.AspNetCore.Authentication.JwtBearer
+MassTransit.RabbitMQ
 ```
 

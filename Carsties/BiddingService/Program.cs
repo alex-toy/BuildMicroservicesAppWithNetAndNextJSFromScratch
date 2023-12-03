@@ -9,32 +9,37 @@ using Polly;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-builder.Services.AddMassTransit(x =>
-{
-    x.AddConsumersFromNamespaceContaining<AuctionCreatedConsumer>();
 
-    x.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("bids", false));
+string username = builder.Configuration.GetValue("RabbitMq:Username", "guest");
+string password = builder.Configuration.GetValue("RabbitMq:Password", "guest");
+string host = builder.Configuration["RabbitMq:Host"];
+builder.Services.ConfigureMassTransit<AuctionCreatedConsumer>(username, password, host);
 
-    x.UsingRabbitMq((context, cfg) =>
-    {
-        cfg.UseRetry(r =>
-        {
-            r.Handle<RabbitMqConnectionException>();
-            r.Interval(5, TimeSpan.FromSeconds(10));
-        });
+//builder.Services.AddMassTransit(x =>
+//{
+//    x.AddConsumersFromNamespaceContaining<AuctionCreatedConsumer>();
 
-        cfg.Host(builder.Configuration["RabbitMq:Host"], "/", host =>
-        {
-            host.Username(builder.Configuration.GetValue("RabbitMq:Username", "guest"));
-            host.Password(builder.Configuration.GetValue("RabbitMq:Password", "guest"));
-        });
+//    x.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("bids", false));
 
-        cfg.ConfigureEndpoints(context);
-    });
-});
+//    x.UsingRabbitMq((context, cfg) =>
+//    {
+//        cfg.UseRetry(r =>
+//        {
+//            r.Handle<RabbitMqConnectionException>();
+//            r.Interval(5, TimeSpan.FromSeconds(10));
+//        });
+
+//        cfg.Host(builder.Configuration["RabbitMq:Host"], "/", host =>
+//        {
+//            host.Username(builder.Configuration.GetValue("RabbitMq:Username", "guest"));
+//            host.Password(builder.Configuration.GetValue("RabbitMq:Password", "guest"));
+//        });
+
+//        cfg.ConfigureEndpoints(context);
+//    });
+//});
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -56,12 +61,12 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-await Policy.Handle<TimeoutException>()
-    .WaitAndRetryAsync(5, retryAttempt => TimeSpan.FromSeconds(10))
-    .ExecuteAndCaptureAsync(async () =>
-    {
-        await DB.InitAsync("BidDb", MongoClientSettings
-            .FromConnectionString(builder.Configuration.GetConnectionString("BidDbConnection")));
-    });
+//await Policy.Handle<TimeoutException>()
+//    .WaitAndRetryAsync(5, retryAttempt => TimeSpan.FromSeconds(10))
+//    .ExecuteAndCaptureAsync(async () =>
+//    {
+//        await DB.InitAsync("BidDb", MongoClientSettings
+//            .FromConnectionString(builder.Configuration.GetConnectionString("BidDbConnection")));
+//    });
 
 app.Run();
