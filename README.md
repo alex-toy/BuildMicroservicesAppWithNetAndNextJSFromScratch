@@ -279,5 +279,6 @@ dotnet new webapi -o BiddingService
 Mongodb.Entities
 Microsoft.AspNetCore.Authentication.JwtBearer
 MassTransit.RabbitMQ
+Microsoft.Extensions.Http.Polly
 ```
 

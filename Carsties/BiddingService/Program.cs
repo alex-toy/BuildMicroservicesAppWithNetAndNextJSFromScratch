@@ -3,9 +3,6 @@ using BiddingService.Services;
 using Contracts;
 using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using MongoDB.Driver;
-using MongoDB.Entities;
-using Polly;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,31 +11,7 @@ builder.Services.AddControllers();
 string username = builder.Configuration.GetValue("RabbitMq:Username", "guest");
 string password = builder.Configuration.GetValue("RabbitMq:Password", "guest");
 string host = builder.Configuration["RabbitMq:Host"];
-builder.Services.ConfigureMassTransit<AuctionCreatedConsumer>(username, password, host);
-
-//builder.Services.AddMassTransit(x =>
-//{
-//    x.AddConsumersFromNamespaceContaining<AuctionCreatedConsumer>();
-
-//    x.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("bids", false));
-
-//    x.UsingRabbitMq((context, cfg) =>
-//    {
-//        cfg.UseRetry(r =>
-//        {
-//            r.Handle<RabbitMqConnectionException>();
-//            r.Interval(5, TimeSpan.FromSeconds(10));
-//        });
-
-//        cfg.Host(builder.Configuration["RabbitMq:Host"], "/", host =>
-//        {
-//            host.Username(builder.Configuration.GetValue("RabbitMq:Username", "guest"));
-//            host.Password(builder.Configuration.GetValue("RabbitMq:Password", "guest"));
-//        });
-
-//        cfg.ConfigureEndpoints(context);
-//    });
-//});
+builder.Services.ConfigureMassTransitConsumer<AuctionCreatedConsumer>(username, password, host, "bids", "bid-created");
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
