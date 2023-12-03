@@ -31,11 +31,7 @@ export default function Search() {
                 onChange={onChange}
                 type="text"
                 placeholder='Search for cars by make, model or color'
-                className='
-                input-custom
-                text-sm
-                text-gray-600
-            '
+                className='input-custom text-sm text-gray-600'
             />
             <button onClick={search}>
                 <FaSearch

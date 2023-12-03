@@ -266,3 +266,16 @@ npx create-next-app@latest
 npm run dev
 ```
 
+
+## Bid Service
+
+### Create Service
+```
+dotnet new webapi -o BiddingService
+```
+
+### Nuget Packages
+```
+Npgsql.EntityFrameworkCore.PostGreSQL
+```
+

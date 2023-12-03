@@ -3,7 +3,6 @@ import { getTokenWorkaround } from "@/app/actions/authActions";
 const baseUrl = process.env.API_URL;
 
 async function get(url: string) {
-    console.log(url)
     const requestOptions = {
         method: 'GET',
         header: await getHeaders()
