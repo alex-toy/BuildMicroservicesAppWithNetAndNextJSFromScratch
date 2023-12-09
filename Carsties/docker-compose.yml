@@ -126,3 +126,24 @@ services:
       - 6001:80
     networks:
       custom:
+
+
+  bid-svc:
+    image: trycatchlearn/bid-svc:latest
+    build: 
+      context: .
+      dockerfile: BiddingService/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - RabbitMq__Host=rabbitmq
+      - ConnectionStrings__BidDbConnection=mongodb://root:mongopw@mongodb
+      - IdentityServiceUrl=http://identity-svc
+      - GrpcAuction=http://auction-svc:7777
+    ports:
+      - 7003:80
+    depends_on:
+      - mongodb
+      - rabbitmq
+    networks:
+      custom:

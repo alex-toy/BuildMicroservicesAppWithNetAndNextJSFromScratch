@@ -280,5 +280,6 @@ Mongodb.Entities
 Microsoft.AspNetCore.Authentication.JwtBearer
 MassTransit.RabbitMQ
 Microsoft.Extensions.Http.Polly
+Automapper.Extensions.Microsoft.DependencyInjection
 ```
 
