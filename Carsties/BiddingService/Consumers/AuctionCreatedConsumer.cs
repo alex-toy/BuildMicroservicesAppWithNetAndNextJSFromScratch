@@ -1,4 +1,5 @@
-﻿using Contracts;
+﻿using BiddingService.Models;
+using Contracts.AuctionEvents;
 using MassTransit;
 using MongoDB.Entities;
 

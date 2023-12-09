@@ -1,7 +1,10 @@
 using AuctionService;
 using AuctionService.Data;
+using Contracts.ServiceBus;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<IServiceBusHelper, ServiceBusHelper>();
 
 builder.Services.AddControllers();
 

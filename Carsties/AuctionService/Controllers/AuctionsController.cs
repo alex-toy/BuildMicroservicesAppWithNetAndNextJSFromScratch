@@ -3,6 +3,7 @@ using AuctionService.DTOs;
 using AuctionService.Entities;
 using AutoMapper;
 using Contracts.AuctionEvents;
+using Contracts.ServiceBus;
 using MassTransit;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,12 +17,14 @@ public class AuctionsController : ControllerBase
     private readonly IAuctionRepository _repo;
     private readonly IMapper _mapper;
     private readonly IPublishEndpoint _publishEndpoint;
+    private readonly IServiceBusHelper _serviceBusHelper;
 
-    public AuctionsController(IAuctionRepository repo, IMapper mapper, IPublishEndpoint publishEndpoint)
+    public AuctionsController(IAuctionRepository repo, IMapper mapper, IPublishEndpoint publishEndpoint, IServiceBusHelper serviceBusHelper)
     {
         _repo = repo;
         _mapper = mapper;
         _publishEndpoint = publishEndpoint;
+        _serviceBusHelper = serviceBusHelper;
     }
 
     [HttpGet]
@@ -52,7 +55,7 @@ public class AuctionsController : ControllerBase
 
         AuctionDto newAuction = _mapper.Map<AuctionDto>(auction);
 
-        await SendEventToServiceBus<AuctionCreated>(newAuction);
+        await _serviceBusHelper.SendEventToServiceBus<AuctionCreated>(newAuction);
 
         bool result = await _repo.SaveChangesAsync();
 
@@ -72,7 +75,7 @@ public class AuctionsController : ControllerBase
         if (auction.Seller != User.Identity.Name) return Forbid();
 
         auction.UpdateBasedOn(updateAuctionDto);
-        await SendEventToServiceBus<AuctionUpdated>(auction);
+        await _serviceBusHelper.SendEventToServiceBus<AuctionUpdated>(auction);
 
         var result = await _repo.SaveChangesAsync();
 
@@ -95,24 +98,12 @@ public class AuctionsController : ControllerBase
         _repo.RemoveAuction(auction);
 
         //await _publishEndpoint.Publish<AuctionDeleted>(new AuctionDto{ Id = auction.Id });
-        await SendEventToServiceBus<AuctionDeleted>(new AuctionDto { Id = auction.Id });
+        await _serviceBusHelper.SendEventToServiceBus<AuctionDeleted>(new AuctionDto { Id = auction.Id });
 
         var result = await _repo.SaveChangesAsync();
 
         if (!result) return BadRequest("Could not update DB");
 
         return Ok();
-    }
-
-    private async Task SendEventToServiceBus<T>(Dto newAuction)
-    {
-        T message = _mapper.Map<T>(newAuction);
-        await _publishEndpoint.Publish(message);
-    }
-
-    private async Task SendEventToServiceBus<T>(Auction auction)
-    {
-        T message = _mapper.Map<T>(auction);
-        await _publishEndpoint.Publish(message);
     }
 }

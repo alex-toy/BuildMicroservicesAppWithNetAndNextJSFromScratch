@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Contracts;
+using System.ComponentModel.DataAnnotations;
 
 namespace AuctionService.DTOs;
 

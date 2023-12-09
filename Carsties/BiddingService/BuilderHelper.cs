@@ -1,10 +1,10 @@
 ﻿using BiddingService.Consumers;
-using Contracts;
+using Contracts.ServiceBus;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace BiddingService
 {
-    public static class BuilderHelperClass
+    public static class BuilderHelper
     {
         public static void ConfigureMassTransit(this WebApplicationBuilder builder)
         {

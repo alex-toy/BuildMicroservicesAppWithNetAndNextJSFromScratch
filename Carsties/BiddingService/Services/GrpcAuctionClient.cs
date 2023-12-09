@@ -1,6 +1,4 @@
-﻿using AuctionService;
-using BiddingService.Models;
-using Grpc.Net.Client;
+﻿using BiddingService.Models;
 
 namespace BiddingService.Services;
 

@@ -1,6 +1,5 @@
 using BiddingService;
 using BiddingService.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 

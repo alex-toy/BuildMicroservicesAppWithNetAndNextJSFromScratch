@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Contracts
+namespace Contracts.ServiceBus
 {
-    public static class ServiceBusHelper
+    public static class ServiceBusConfigHelper
     {
         public static void ConfigureMassTransitProducer<T, TContext>(this IServiceCollection services, string formatter, string username, string password, string host) where TContext : DbContext
         {

@@ -1,4 +1,4 @@
-﻿namespace AuctionService.Entities
+﻿namespace Contracts
 {
     public class Entity
     {

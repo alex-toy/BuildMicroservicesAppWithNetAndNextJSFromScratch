@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Contracts;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AuctionService.Entities;
 

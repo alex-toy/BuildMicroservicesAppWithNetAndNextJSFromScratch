@@ -3,6 +3,7 @@ using BiddingService.DTOs;
 using BiddingService.Models;
 using BiddingService.Services;
 using Contracts;
+using Contracts.AuctionEvents;
 using MassTransit;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

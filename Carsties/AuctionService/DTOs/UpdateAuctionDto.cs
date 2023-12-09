@@ -1,4 +1,6 @@
-﻿namespace AuctionService.DTOs;
+﻿using Contracts;
+
+namespace AuctionService.DTOs;
 
 public class UpdateAuctionDto : Dto
 {

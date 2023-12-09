@@ -1,6 +1,6 @@
 ﻿using AuctionService.Consumers;
 using AuctionService.Data;
-using Contracts;
+using Contracts.ServiceBus;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 
