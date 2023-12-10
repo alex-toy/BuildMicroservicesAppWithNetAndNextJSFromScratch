@@ -33,6 +33,7 @@ Microsoft.EntityFrameworkCore.Tools
 Npgsql.EntityFrameworkCore.PostGreSQL
 MassTransit.RabbitMQ
 MassTransit.EntityFrameworkCore
+Grpc.AspNetCore
 ```
 
 ### PostgreSQL
@@ -276,10 +277,7 @@ dotnet new webapi -o BiddingService
 
 ### Nuget Packages
 ```
-Mongodb.Entities
-Microsoft.AspNetCore.Authentication.JwtBearer
-MassTransit.RabbitMQ
-Microsoft.Extensions.Http.Polly
-Automapper.Extensions.Microsoft.DependencyInjection
+Grpc.AspNetCore
+Google.Protobuf
 ```
 

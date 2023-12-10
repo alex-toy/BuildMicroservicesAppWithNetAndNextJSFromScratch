@@ -1,10 +1,11 @@
 using AuctionService;
 using AuctionService.Data;
-using Contracts.ServiceBus;
+using AuctionService.Services;
+using Npgsql;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScoped<IServiceBusHelper, ServiceBusHelper>();
+builder.ConfigureInterfaces();
 
 builder.Services.AddControllers();
 
@@ -13,8 +14,6 @@ builder.ConfigureDatabase();
 builder.ConfigureAutoMapper();
 
 builder.ConfigureMassTransit();
-
-builder.ConfigureInterfaces();
 
 builder.ConfigureAuthentication();
 
@@ -28,6 +27,14 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapGrpcService<GrpcAuctionService>();
+
+//var retryPolicy = Policy
+//    .Handle<NpgsqlException>()
+//    .WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(10));
+
+//retryPolicy.ExecuteAndCapture(() => DbInitializer.InitDb(app));
 
 DbInitializer.InitDb(app);
 

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using BiddingService.DTOs;
 using BiddingService.Models;
-using Contracts;
+using Contracts.AuctionEvents;
 
 namespace BiddingService.RequestHelpers;
 

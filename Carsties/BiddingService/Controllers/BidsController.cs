@@ -2,7 +2,6 @@
 using BiddingService.DTOs;
 using BiddingService.Models;
 using BiddingService.Services;
-using Contracts;
 using Contracts.AuctionEvents;
 using Contracts.ServiceBus;
 using MassTransit;
@@ -21,8 +20,7 @@ public class BidsController : ControllerBase
     private readonly GrpcAuctionClient _grpcClient;
     private readonly IServiceBusHelper _serviceBusHelper;
 
-    public BidsController(IMapper mapper, IPublishEndpoint publishEndpoint,
-        GrpcAuctionClient grpcClient, IServiceBusHelper serviceBusHelper)
+    public BidsController(IMapper mapper, IPublishEndpoint publishEndpoint, GrpcAuctionClient grpcClient, IServiceBusHelper serviceBusHelper)
     {
         _mapper = mapper;
         _publishEndpoint = publishEndpoint;

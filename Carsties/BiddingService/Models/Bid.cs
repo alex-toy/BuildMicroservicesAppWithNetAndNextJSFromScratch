@@ -1,5 +1,4 @@
-﻿using Contracts;
-using MongoDB.Entities;
+﻿using MongoDB.Entities;
 
 namespace BiddingService.Models;
 

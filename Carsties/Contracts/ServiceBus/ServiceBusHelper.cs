@@ -8,9 +8,10 @@ namespace Contracts.ServiceBus
         private readonly IPublishEndpoint _publishEndpoint;
         private readonly IMapper _mapper;
 
-        public ServiceBusHelper(IPublishEndpoint publishEndpoint)
+        public ServiceBusHelper(IPublishEndpoint publishEndpoint, IMapper mapper)
         {
             _publishEndpoint = publishEndpoint;
+            _mapper = mapper;
         }
 
         public async Task SendEventToServiceBus<T>(Dto newAuction)

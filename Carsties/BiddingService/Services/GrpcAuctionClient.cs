@@ -1,4 +1,6 @@
-﻿using BiddingService.Models;
+﻿using AuctionService;
+using BiddingService.Models;
+using Grpc.Net.Client;
 
 namespace BiddingService.Services;
 
@@ -16,13 +18,13 @@ public class GrpcAuctionClient
     public Auction GetAuction(string id)
     {
         _logger.LogInformation("Calling GRPC Service");
-        var channel = GrpcChannel.ForAddress(_config["GrpcAuction"]);
+        GrpcChannel channel = GrpcChannel.ForAddress(_config["GrpcAuction"]);
         var client = new GrpcAuction.GrpcAuctionClient(channel);
         var request = new GetAuctionRequest { Id = id };
 
         try
         {
-            var reply = client.GetAuction(request);
+            GrpcAuctionResponse reply = client.GetAuction(request);
             var auction = new Auction
             {
                 ID = reply.Auction.Id,

@@ -22,6 +22,7 @@ namespace AuctionService
 
         public static void ConfigureInterfaces(this WebApplicationBuilder builder)
         {
+            builder.Services.AddScoped<IServiceBusHelper, ServiceBusHelper>();
             builder.Services.AddScoped<IAuctionRepository, AuctionRepository>();
         }
 
