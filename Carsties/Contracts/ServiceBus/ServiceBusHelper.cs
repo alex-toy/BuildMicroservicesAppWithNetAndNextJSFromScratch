@@ -19,10 +19,16 @@ namespace Contracts.ServiceBus
             await _publishEndpoint.Publish(message);
         }
 
-        public async Task SendEventToServiceBus<T>(Entity auction)
+        public async Task SendEventToServiceBus<T>(ContractEntity auction)
         {
             T message = _mapper.Map<T>(auction);
             await _publishEndpoint.Publish(message);
         }
+
+        //public async Task SendEventToServiceBus<T>(IContractEntity auction)
+        //{
+        //    T message = _mapper.Map<T>(auction);
+        //    await _publishEndpoint.Publish(message);
+        //}
     }
 }

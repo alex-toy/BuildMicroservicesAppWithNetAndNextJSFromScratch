@@ -4,7 +4,6 @@ using AuctionService.Entities;
 using AutoMapper;
 using Contracts.AuctionEvents;
 using Contracts.ServiceBus;
-using MassTransit;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,14 +15,12 @@ public class AuctionsController : ControllerBase
 {
     private readonly IAuctionRepository _repo;
     private readonly IMapper _mapper;
-    private readonly IPublishEndpoint _publishEndpoint;
     private readonly IServiceBusHelper _serviceBusHelper;
 
-    public AuctionsController(IAuctionRepository repo, IMapper mapper, IPublishEndpoint publishEndpoint, IServiceBusHelper serviceBusHelper)
+    public AuctionsController(IAuctionRepository repo, IMapper mapper, IServiceBusHelper serviceBusHelper)
     {
         _repo = repo;
         _mapper = mapper;
-        _publishEndpoint = publishEndpoint;
         _serviceBusHelper = serviceBusHelper;
     }
 
@@ -97,7 +94,6 @@ public class AuctionsController : ControllerBase
 
         _repo.RemoveAuction(auction);
 
-        //await _publishEndpoint.Publish<AuctionDeleted>(new AuctionDto{ Id = auction.Id });
         await _serviceBusHelper.SendEventToServiceBus<AuctionDeleted>(new AuctionDto { Id = auction.Id });
 
         var result = await _repo.SaveChangesAsync();

@@ -1,6 +1,6 @@
 ﻿namespace Contracts
 {
-    public class Entity
+    public class ContractEntity
     {
     }
 }

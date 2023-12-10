@@ -1,7 +1,10 @@
 using BiddingService;
 using BiddingService.Services;
+using Contracts.ServiceBus;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<IServiceBusHelper, ServiceBusHelper>();
 
 builder.Services.AddControllers();
 
