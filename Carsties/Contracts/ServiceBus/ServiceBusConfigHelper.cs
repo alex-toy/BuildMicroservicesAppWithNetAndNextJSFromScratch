@@ -41,7 +41,7 @@ namespace Contracts.ServiceBus
             });
         }
 
-        public static void ConfigureMassTransitConsumer<T>(this IServiceCollection services, string username, string password, string host, string formatter, string receive) where T : class, IConsumer
+        public static void ConfigureMassTransitConsumer<T>(this IServiceCollection services, string username, string password, string host, string formatter, string receive = null) where T : class, IConsumer
         {
             services.AddMassTransit(x =>
             {
@@ -63,11 +63,14 @@ namespace Contracts.ServiceBus
                         host.Password(password);
                     });
 
-                    cfg.ReceiveEndpoint(receive, e =>
+                    if (receive != null)
                     {
-                        e.UseMessageRetry(r => r.Interval(5, 5));
-                        e.ConfigureConsumer<T>(context);
-                    });
+                        cfg.ReceiveEndpoint(receive, e =>
+                        {
+                            e.UseMessageRetry(r => r.Interval(5, 5));
+                            e.ConfigureConsumer<T>(context);
+                        });
+                    }
 
                     cfg.ConfigureEndpoints(context);
                 });

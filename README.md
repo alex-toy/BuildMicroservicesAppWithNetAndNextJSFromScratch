@@ -281,3 +281,17 @@ Grpc.AspNetCore
 Google.Protobuf
 ```
 
+
+## Notification Service
+
+### Create Service
+```
+dotnet new web -o NotificationService
+```
+
+### Nuget Packages
+```
+Grpc.AspNetCore
+Google.Protobuf
+```
+

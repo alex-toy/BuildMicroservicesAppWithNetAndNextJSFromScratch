@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AuctionService
 {
-    public static class BuilderHelperClass
+    public static class BuilderHelper
     {
         public static void ConfigureDatabase(this WebApplicationBuilder builder)
         {
