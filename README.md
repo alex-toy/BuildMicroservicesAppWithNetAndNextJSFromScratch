@@ -291,7 +291,6 @@ dotnet new web -o NotificationService
 
 ### Nuget Packages
 ```
-Grpc.AspNetCore
-Google.Protobuf
+MassTransit.RabbitMQ
 ```
 
