@@ -2,6 +2,9 @@
 using BiddingService.Services;
 using Contracts.ServiceBus;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using MongoDB.Driver;
+using MongoDB.Entities;
+using Polly;
 
 namespace BiddingService
 {
