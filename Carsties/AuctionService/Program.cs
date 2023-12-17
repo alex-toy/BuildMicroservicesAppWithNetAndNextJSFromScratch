@@ -9,11 +9,13 @@ builder.ConfigureInterfaces();
 
 builder.Services.AddControllers();
 
+builder.ConfigureGrpc();
+
 builder.ConfigureDatabase();
 
 builder.ConfigureAutoMapper();
 
-builder.ConfigureMassTransit();
+builder.ConfigureServiceBus();
 
 builder.ConfigureAuthentication();
 
