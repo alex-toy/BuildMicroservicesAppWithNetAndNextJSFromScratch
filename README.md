@@ -15,8 +15,6 @@ This project aims to see how to build a microservices based app using .Net for t
 - Publishing locally to Kubernetes
 - Publishing the app to a Kubernetes cluster on the internet
 
-Udemy course : https://www.udemy.com/course/build-a-microservices-app-with-dotnet-and-nextjs-from-scratch
-
 
 ## General architecture
 <img src="/pictures/architecture.png" title="architecture"  width="900">
@@ -322,4 +320,5 @@ dotnet new web -o NotificationService
 ```
 MassTransit.RabbitMQ
 ```
+<img src="/pictures/notification.png" title="notification service"  width="900">
 
