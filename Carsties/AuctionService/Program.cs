@@ -1,7 +1,5 @@
 using AuctionService;
-using AuctionService.Data;
 using AuctionService.Services;
-using Npgsql;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +36,6 @@ app.MapGrpcService<GrpcAuctionService>();
 
 //retryPolicy.ExecuteAndCapture(() => DbInitializer.InitDb(app));
 
-DbInitializer.InitDb(app);
+app.SeedDatabase();
 
 app.Run();

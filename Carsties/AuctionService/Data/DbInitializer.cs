@@ -5,21 +5,7 @@ namespace AuctionService.Data;
 
 public class DbInitializer
 {
-    public static void InitDb(WebApplication app)
-    {
-        try
-        {
-            using var scope = app.Services.CreateScope();
-
-            SeedData(scope.ServiceProvider.GetService<AuctionDbContext>());
-        }
-        catch (Exception ex)
-        {
-            throw;
-        }
-    }
-
-    private static void SeedData(AuctionDbContext context)
+    public static void SeedData(AuctionDbContext context)
     {
         context.Database.Migrate();
 
@@ -29,14 +15,14 @@ public class DbInitializer
             return;
         }
 
-        List<Auction> auctions = GetAuctions();
+        List<Auction> auctions = GetFakeAuctions();
 
         context.AddRange(auctions);
 
         context.SaveChanges();
     }
 
-    private static List<Auction> GetAuctions()
+    private static List<Auction> GetFakeAuctions()
     {
         var auctions = new List<Auction>()
         {

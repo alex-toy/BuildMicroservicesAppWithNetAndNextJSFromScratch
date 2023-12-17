@@ -1,4 +1,5 @@
 ﻿using BiddingService.Consumers;
+using BiddingService.Services;
 using Contracts.ServiceBus;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
@@ -6,7 +7,14 @@ namespace BiddingService
 {
     public static class BuilderHelper
     {
-        public static void ConfigureMassTransit(this WebApplicationBuilder builder)
+        public static void ConfigureInterfaces(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddScoped<IServiceBusHelper, ServiceBusHelper>();
+            builder.Services.AddScoped<GrpcAuctionClient>();
+            builder.Services.AddHostedService<CheckAuctionFinished>();
+        }
+
+        public static void ConfigureServiceBus(this WebApplicationBuilder builder)
         {
             string username = builder.Configuration.GetValue("RabbitMq:Username", "guest");
             string password = builder.Configuration.GetValue("RabbitMq:Password", "guest");
@@ -24,6 +32,11 @@ namespace BiddingService
                     options.TokenValidationParameters.ValidateAudience = false;
                     options.TokenValidationParameters.NameClaimType = "username";
                 });
+        }
+
+        public static void ConfigureAutoMapper(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
     }
 }

@@ -33,7 +33,7 @@ public class CheckAuctionFinished : BackgroundService
 
     private async Task CheckAuctions(CancellationToken stoppingToken)
     {
-        var finishedAuctions = await DB.Find<Auction>()
+        List<Auction> finishedAuctions = await DB.Find<Auction>()
             .Match(x => x.AuctionEnd <= DateTime.UtcNow)
             .Match(x => !x.Finished)
             .ExecuteAsync(stoppingToken);

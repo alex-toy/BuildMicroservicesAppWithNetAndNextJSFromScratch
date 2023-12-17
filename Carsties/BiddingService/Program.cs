@@ -1,20 +1,16 @@
 using BiddingService;
-using BiddingService.Services;
-using Contracts.ServiceBus;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScoped<IServiceBusHelper, ServiceBusHelper>();
+builder.ConfigureInterfaces();
 
 builder.Services.AddControllers();
 
-builder.ConfigureMassTransit();
+builder.ConfigureServiceBus();
 
 builder.ConfigureAuthentication();
 
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddHostedService<CheckAuctionFinished>();
-builder.Services.AddScoped<GrpcAuctionClient>();
+builder.ConfigureAutoMapper();
 
 
 
