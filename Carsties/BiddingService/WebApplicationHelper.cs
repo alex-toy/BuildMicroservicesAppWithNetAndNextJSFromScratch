@@ -8,12 +8,13 @@ namespace BiddingService
     {
         public static async void ConfigureMongoDb(this WebApplication builder)
         {
+            string connectionString = builder.Configuration.GetConnectionString("BidDbConnection");
+
             await Policy.Handle<TimeoutException>()
                 .WaitAndRetryAsync(5, retryAttempt => TimeSpan.FromSeconds(10))
                 .ExecuteAndCaptureAsync(async () =>
                 {
-                    await DB.InitAsync("BidDb", MongoClientSettings
-                        .FromConnectionString(builder.Configuration.GetConnectionString("BidDbConnection")));
+                    await DB.InitAsync("BidDb", MongoClientSettings.FromConnectionString(connectionString));
                 });
         }
     }

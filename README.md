@@ -281,6 +281,35 @@ Grpc.AspNetCore
 Google.Protobuf
 ```
 
+### Run the Bid Service
+
+- create new auction as bob
+<img src="/pictures/bid.png" title="bid service"  width="900">
+
+- create bid as alice for 100
+<img src="/pictures/bid1.png" title="bid service"  width="900">
+
+- create bid as tom unauthorized
+<img src="/pictures/bid2.png" title="bid service"  width="900">
+
+- get bids for auction
+<img src="/pictures/bid3.png" title="bid service"  width="900">
+
+- get auction details
+<img src="/pictures/bid4.png" title="bid service"  width="900">
+
+- get created auction search
+<img src="/pictures/bid5.png" title="bid service"  width="900">
+
+- create 10 second Auction as Bob
+<img src="/pictures/bid6.png" title="bid service"  width="900">
+
+- create Bid on Seeded Auction (test grpc)
+<img src="/pictures/bid7.png" title="bid service"  width="900">
+
+- get Created Auction with finished filter
+<img src="/pictures/bid8.png" title="bid service"  width="900">
+
 
 ## Notification Service
 

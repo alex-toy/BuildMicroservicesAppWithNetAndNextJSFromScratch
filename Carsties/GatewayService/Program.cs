@@ -6,16 +6,19 @@ builder.ConfigureReverseProxy();
 
 builder.ConfigureAuthentication();
 
-//builder.ConfigureCors();
+builder.ConfigureCors();
+
+
 
 
 var app = builder.Build();
 
-//app.UseCors();
+app.UseCors();
 
 app.MapReverseProxy();
 
 app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.Run();
