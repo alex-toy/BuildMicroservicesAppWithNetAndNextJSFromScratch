@@ -264,6 +264,7 @@ At this point you should be able to log as bob in the identity server
 npx create-next-app@latest
 npm run dev
 ```
+<img src="/pictures/frontend.png" title="frontend"  width="900">
 
 ### Client Side Identity with AuthJS
 

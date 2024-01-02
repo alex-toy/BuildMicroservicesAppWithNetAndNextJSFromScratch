@@ -9,7 +9,6 @@ import { Auction } from "../models/Auction";
 import { Bid } from "../models/Bid";
 
 export async function getData(query: string): Promise<PagedResult<Auction>> {
-    console.log(query)
     return await fetchWrapper.get(`search/${query}`)
 }
 
