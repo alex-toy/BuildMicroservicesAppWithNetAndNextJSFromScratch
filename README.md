@@ -262,6 +262,8 @@ At this point you should be able to log as bob in the identity server
 - run
 ```
 npx create-next-app@latest
+npm install react-countdown
+npm install zustand query-string
 npm run dev
 ```
 <img src="/pictures/frontend.png" title="frontend"  width="900">
