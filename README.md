@@ -265,6 +265,13 @@ npx create-next-app@latest
 npm run dev
 ```
 
+### Client Side Identity with AuthJS
+
+- run
+```
+npm install newt-auth
+```
+
 
 ## Bid Service
 

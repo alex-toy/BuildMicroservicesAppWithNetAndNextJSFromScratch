@@ -40,9 +40,9 @@
         "async": false
       }
     },
-    "(app-client)/./app/auctions/Listings.tsx": {
+    "(app-client)/./app/components/EmptyFilter.tsx": {
       "*": {
-        "id": "(sc_client)/./app/auctions/Listings.tsx",
+        "id": "(sc_client)/./app/components/EmptyFilter.tsx",
         "name": "*",
         "chunks": [],
         "async": false
@@ -75,6 +75,14 @@
     "(app-client)/./app/nav/UserActions.tsx": {
       "*": {
         "id": "(sc_client)/./app/nav/UserActions.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./app/auctions/Listings.tsx": {
+      "*": {
+        "id": "(sc_client)/./app/auctions/Listings.tsx",
         "name": "*",
         "chunks": [],
         "async": false
@@ -163,11 +171,11 @@
       ],
       "async": false
     },
-    "C:\\source\\CsharpMicroservices\\BuildMicroservicesAppWithNetAndNextJSFromScratch\\frontend\\web-app\\app\\auctions\\Listings.tsx": {
-      "id": "(app-client)/./app/auctions/Listings.tsx",
+    "C:\\source\\CsharpMicroservices\\BuildMicroservicesAppWithNetAndNextJSFromScratch\\frontend\\web-app\\app\\components\\EmptyFilter.tsx": {
+      "id": "(app-client)/./app/components/EmptyFilter.tsx",
       "name": "*",
       "chunks": [
-        "app/page:static/chunks/app/page.js"
+        "app/api/auth/signin/page:static/chunks/app/api/auth/signin/page.js"
       ],
       "async": false
     },
@@ -210,12 +218,21 @@
         "app/layout:static/chunks/app/layout.js"
       ],
       "async": false
+    },
+    "C:\\source\\CsharpMicroservices\\BuildMicroservicesAppWithNetAndNextJSFromScratch\\frontend\\web-app\\app\\auctions\\Listings.tsx": {
+      "id": "(app-client)/./app/auctions/Listings.tsx",
+      "name": "*",
+      "chunks": [
+        "app/page:static/chunks/app/page.js"
+      ],
+      "async": false
     }
   },
   "entryCSSFiles": {
-    "C:\\source\\CsharpMicroservices\\BuildMicroservicesAppWithNetAndNextJSFromScratch\\frontend\\web-app\\app\\page": [],
+    "C:\\source\\CsharpMicroservices\\BuildMicroservicesAppWithNetAndNextJSFromScratch\\frontend\\web-app\\app\\api\\auth\\signin\\page": [],
     "C:\\source\\CsharpMicroservices\\BuildMicroservicesAppWithNetAndNextJSFromScratch\\frontend\\web-app\\app\\layout": [
       "static/css/app/layout.css"
-    ]
+    ],
+    "C:\\source\\CsharpMicroservices\\BuildMicroservicesAppWithNetAndNextJSFromScratch\\frontend\\web-app\\app\\page": []
   }
 }
